@@ -36,6 +36,45 @@ class Server:
         self.host = Code.generate(8)
         self.port = 69420
 
+class Fonts:
+    def __init__(self, 
+                 font_size, 
+                 font_family, 
+                 font_color, 
+                 text):
+        """
+            Tworzenie tekstu
+            Cechy tekstu wpisane dość czytelnie
+            
+            self.bold = self.label.get_bold(switch) 
+                                                                - należy wpisać True/False  
+            self.italic= self.label.get_italic(switch)
+            
+        """
+        self.font_size = font_size
+        self.font_family = font_family
+        self.font_color = font_color
+        self.text = text
+        self.font = pg.font.SysFont(font_family, font_size)
+        self.label = self.font.render(self.text, 1, self.font_color)
+         
+        
+    
+    def createLabel(self, win, x, y):
+        self.win = win
+        self.win.blit(self.label, (x, y))
+  
+
+ 
+class Button:
+    def __init__(self, width, height, color):
+        """
+            Tworzenie przycisków
+        """
+        self.width = width
+        self.height = height
+        self.color = color
+
 
 class Game:
     def __init__(self):
@@ -61,6 +100,25 @@ class Game:
         funkcje wyświetlające na ekranie
         logika interfejsu
         """
+        #testowt tekst
+        
+        
+        """
+            Fonts(rozmiar, 
+                    czcionka, 
+                    kolor,
+                    tekst).crateLabel(okno, współrzędne tego tekstu)
+        """
+        
+        
+        Fonts(20, 
+              'Arial',
+              (0,0,0), 
+              'SEX').createLabel(self.window, 200, 200)
+        
+        
+        
+        
         
         #test
         Rect = pg.Rect(DISPLAY_WIDTH/2,
