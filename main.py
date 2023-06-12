@@ -1,4 +1,4 @@
-from random import randint as rnd
+from random import randint
 import pygame as pg
 import sys
 
@@ -15,23 +15,20 @@ win = pg.display.set_mode((display_x, display_y))
 pg.display.set_caption(game_title)
 
 class Code:
-    def codeGen(max_len):
+    def generate(length):
         """
-            Wyznaczanie długości kodu dla naszych potrzeb w (max_len)
-            i na dole jego generowanie :) 
+            Przykład użycia:
+            print(Code.generate(10)) - zwróci kod o długości 10
         """
         characters = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890!@#$%&"
-        code=[]
-        for i in range(max_len):
-            rand_number = rnd(0,len(characters))
-            for char in characters[rand_number]:
-                continue
-            code.append(char)
-        return "Code: "+"".join(code)
-
-   # print(codeGen(10))  <- przykładowe wyświetlanie ¯\_(ツ)_/¯
+        code = ""
+        for _ in range(length):
+            random_number = randint(0, len(characters)-1)
+            code += characters[random_number]
+        return code
 
 
+print(Code.generate(10))
 
 
 class Game:
