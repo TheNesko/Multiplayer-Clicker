@@ -6,6 +6,8 @@ class Game:
 
     def run(self):
         print("Hello World! maybe sex?.")
+        for x in range(10):
+            print(f"you sucked my cock {x+1} times")
         pass
 
 
