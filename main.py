@@ -7,12 +7,16 @@ pg.init()
 #-------Preferences--------    
 display_x = 700
 display_y = 500
-game_title = "CLICKER MP"
+game_title = "CLICKER Multiplayer SEX SEX SEX SEX SEX SEX SEX SEX SEX SEX SEX SEX SEX SEX"
+icon = pg.image.load("Multiplayer-Clicker/images/icon.jpg") # Ikonę będę przerabiał tylko musze jakiegoś gimpa czy jaki chuj pobrac
+background_color = (119, 226, 252) # Potem bedzie zmieniane zależne od tematyki gry
 #-------------------------
 
 
 win = pg.display.set_mode((display_x, display_y))
 pg.display.set_caption(game_title)
+pg.display.set_icon(icon)
+
 
 class Code:
     def generate(length):
@@ -44,6 +48,7 @@ class Game:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     sys.exit()
+            win.fill(background_color)
             pg.display.update()
 
 if __name__ == "__main__":
