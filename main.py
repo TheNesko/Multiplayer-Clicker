@@ -5,6 +5,7 @@ class Game:
         pass
 
     def run(self):
+        print("Hello World! maybe sex?")
         pass
 
 
