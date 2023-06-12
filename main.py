@@ -7,7 +7,9 @@ import socket
 DISPLAY_WIDTH = 700
 DISPLAY_HEIGHT = 500
 GAME_TITLE = "CLICKER MP"
-#--------------------------
+GAME_ICON = pg.image.load("Multiplayer-Clicker/images/icon.jpg") # Ikonę będę przerabiał tylko musze jakiegoś gimpa czy jaki chuj pobrac
+BACKGROUND_COLOR = (119, 226, 252) # Potem bedzie zmieniane zależne od tematyki gry
+#-------------------------
 
 
 class Code:
@@ -44,6 +46,7 @@ class Game:
         tworzenie okna
         """
         pg.init()
+        pg.display.set_icon(GAME_ICON)
         pg.display.set_caption(GAME_TITLE)
         self.window = pg.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
@@ -68,7 +71,7 @@ class Game:
         #----
 
         pg.display.update()
-        self.window.fill((30, 30, 30))
+        self.window.fill(BACKGROUND_COLOR)
 
     def run(self):
         while self.is_running:
