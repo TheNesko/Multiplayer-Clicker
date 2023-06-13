@@ -46,9 +46,7 @@ class Fonts:
             Tworzenie tekstu
             Cechy tekstu wpisane dość czytelnie
             
-            self.bold = self.label.get_bold(switch) 
-                                                                - należy wpisać True/False  
-            self.italic= self.label.get_italic(switch)
+            
             
         """
         self.font_size = font_size
