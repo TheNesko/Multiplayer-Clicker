@@ -8,21 +8,21 @@ import socket
 DISPLAY_WIDTH = 1280
 DISPLAY_HEIGHT = 720
 GAME_TITLE = "CLICKER Multiplayer"
-GAME_ICON = pg.image.load("Multiplayer-Clicker/images/icon.jpg") # Ikonę będę przerabiał tylko musze jakiegoś gimpa czy jaki chuj pobrac
+GAME_ICON = pg.image.load("images/icon.jpg") # Ikonę będę przerabiał tylko musze jakiegoś gimpa czy jaki chuj pobrac
 BACKGROUND_COLOR = (119, 226, 252) # Potem bedzie zmieniane zależne od tematyki gry
 # BACKGROUND_IMG = comming soon..
 
 
 #-------------------------
-#---------MENU------------
-START_GAME = pg.image.load('Multiplayer-Clicker/images/menu_elements/START GAME.png') 
-START_GAME_hover = pg.image.load('Multiplayer-Clicker/images/menu_elements/hover/START GAME hover.png')
+#---------MENU(Wszystkie grafiki przycisków)------------
+START_GAME = 'images/menu_elements/START GAME.jpg'
+START_GAME_hover = 'images/menu_elements/hover/START GAME hover.png'
  
-OPTIONS = pg.image.load('Multiplayer-Clicker/images/menu_elements/OPTIONS.png') 
-OPTIONS_hover = pg.image.load('Multiplayer-Clicker/images/menu_elements/hover/OPTIONS hover.png') 
+OPTIONS = 'images/menu_elements/OPTIONS.png' 
+OPTIONS_hover = 'images/menu_elements/hover/OPTIONS hover.png'
 
-QUIT = pg.image.load('Multiplayer-Clicker/images/menu_elements/QUIT.png') 
-QUIT_hover = pg.image.load('Multiplayer-Clicker/images/menu_elements/hover/QUIT hover.png') 
+QUIT = 'images/menu_elements/QUIT.png' 
+QUIT_hover = 'images/menu_elements/hover/QUIT hover.png'
 
 
 
@@ -94,17 +94,53 @@ class Fonts:
   
 
  
-class Button:
-    def __init__(self, width, height, background_color, image):
+class Button():
+    def __init__(self,
+                 win,
+                 button_x,
+                 button_y,
+                 button_width, 
+                 button_height, 
+                 background_color, 
+                 ):
+        
         """
             Tworzenie przycisków
+            Polega na podaniu wartości jakie widać powyżej ^^^
+            
+            i teraz tak:
+            jeżeli chcemy użyć obrazka jako przycisk musimy wykonać kod w ten sposób:
+            > Button(self.window, button_x, button_y, button_width, button_height, (kolor)).img(self.window, img_x, img_y, *Ścieżka do grafiki*)
+                                                                                                            (Pozycja obrazka(najlepiej taka sama co przycisku))
+            
+            a jeżeli chcemy bez obrazka i sam kwadrat to:
+            > Button(self.window, button_x, button_y, button_width, button_height, (kolor)).createButton()
         """
-        self.width = width
-        self.height = height
-        self.background_color = background_color
-        self.image = image
+        self.win = win
+        self.button_x = button_x
+        self.button_y = button_y
+        self.button_width = button_width
+        self.button_height = button_height
+        self.button_color = background_color
+        
 
-
+        
+       
+    
+    
+    def createButton(self):
+        pg.draw.rect(self.win, self.button_color, 
+                     (self.button_x, self.button_y, self.button_width, self.button_height))
+    
+    def img(self, win, image_x, image_y, image_path): 
+        self.win = win  
+        self.img_x = image_x 
+        self.img_y = image_y 
+        self.img_path = image_path
+        self.image = pg.image.load(self.img_path)
+        self.win.blit(self.image, (self.img_x, self.img_y))
+        
+        
 class Game:
     def __init__(self):
         self.is_running = True
@@ -131,9 +167,7 @@ class Game:
         """
         #testowt tekst
         
-    def main_menu(self):
-        # Fonts(60, 'Arial', (255, 168, 0), 'MENU').createLabel(self.window, 1000, 200)
-                
+    
                 
         
         """
@@ -146,8 +180,14 @@ class Game:
         """
         
         
-        Fonts(20, 'Arial',(0,0,0), 'Testowy Tekst',True , False).createLabel(self.window, 200, 200)
+        # Fonts(20, 'Arial',(0,0,0), 'Testowy Tekst',True , False).createLabel(self.window, 200, 200)
         
+        # Test przycisku
+        
+        
+        
+        Button(self.window, 500, 200, 350, 100, (0,0,0)).img(self.window, 0, 0, START_GAME)
+        Button(self.window, 500, 200, 350, 100, (0,0,0)).createButton()
         
         
         
@@ -161,6 +201,7 @@ class Game:
         #----
 
         pg.display.update()
+        
         self.window.fill(BACKGROUND_COLOR)
 
     def run(self):
@@ -170,12 +211,11 @@ class Game:
                     self.is_running = False
             self.update()
             self.render()
-            self.main_menu()
+            
             
 
 if __name__ == "__main__":
    
-    
     
     game = Game()
     game.run()
